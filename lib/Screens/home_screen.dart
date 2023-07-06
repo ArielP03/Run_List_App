@@ -42,7 +42,7 @@ class CardWidget extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    print(query);
+    print(query); 
     return Text('Results');
   }
 
