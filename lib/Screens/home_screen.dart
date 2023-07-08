@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -87,36 +86,40 @@ class CardWidget extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     print(query);
-    return Container(
+    return SingleChildScrollView(
       child: Container(
-        child: ListView(
-          physics: AlwaysScrollableScrollPhysics(),
-          children: [
-            Container(child: Text(
-              'Resultado',
-              textAlign: TextAlign.center,
-            ) ,
-            ),
-            Container(child:ListView(
-              scrollDirection: Axis.vertical,
-              physics: NeverScrollableScrollPhysics(),
-              children: [CardView()],
-            ),color: Colors.transparent ,width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,)
-            
-          ],
+        color: color_1,
+        child: Container(
+          child: Column(
+            children: [
+              SizedBox(
+                width:  MediaQuery.of(context).size.width,
+                height: 30,
+                child:Container(child: 
+                 Text(
+                  'Resultado',
+                  textAlign: TextAlign.center ,
+                  
+                ),
+                alignment: Alignment.center,
+                
+                )
+              ),
+              CardView(),
+            ],
+          ),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(60), topRight: Radius.circular(60)),
+              gradient: LinearGradient(
+                colors: [color_1, Colors.white],
+                begin: FractionalOffset.bottomCenter,
+                end: FractionalOffset.topCenter,
+              )),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
         ),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(60), topRight: Radius.circular(60)),
-            gradient: LinearGradient(
-              colors: [color_1, Colors.white],
-              begin: FractionalOffset.bottomCenter,
-              end: FractionalOffset.topCenter,
-            )),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
       ),
-      color: color_1,
     );
   }
 
@@ -155,13 +158,24 @@ class CardWidget extends SearchDelegate {
   }
 }
 
-// ignore: non_constant_identifier_names
-Widget CardView() {
-  return Container(
-    color: Colors.yellow,
-    width: 50,
-    height: 50,
-    child: Column(
-      children: [Row(children: [Text('hello')],),],
-  ),);
+class CardView extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width*0.96,
+      height: MediaQuery.of(context).size.height*0.15,
+      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40)),color: Colors.white,boxShadow: [BoxShadow(color: Colors.grey[850]!.withOpacity(0.30),blurRadius: 10, blurStyle: BlurStyle.outer),]),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+        child: Column(
+        children: [
+          Row(
+            children: [Text('hello',textAlign: TextAlign.center,)],
+          ),
+        ],
+        ),
+      ),
+    );
+  }
 }
