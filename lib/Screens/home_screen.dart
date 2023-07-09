@@ -1,10 +1,13 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final Color color_1 = Color.fromARGB(255, 43, 120, 164);
 final Color color_3 = Color.fromARGB(255, 55, 156, 212);
-final Color color_2 = Color.fromARGB(255, 19, 41, 62);
+final Color iconcolor = Color.fromARGB(255, 19, 41, 62);
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,8 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             icon: SvgPicture.asset(
               'assets/icon_search.svg',
-              // ignore: deprecated_member_use
-              color: color_2,
+              color: iconcolor,
             ),
             iconSize: 45,
           )
@@ -97,14 +99,22 @@ class CardWidget extends SearchDelegate {
                 height: 30,
                 child:Container(child: 
                  Text(
-                  'Resultado',
+                  'Most recent',
                   textAlign: TextAlign.center ,
+                  style: GoogleFonts.amaticSc(color: iconcolor, fontSize: 20),
                   
                 ),
                 alignment: Alignment.center,
                 
                 )
               ),
+              CardView(),
+              CardView(),
+              CardView(),
+              CardView(),
+              CardView(),
+              CardView(),
+              CardView(),
               CardView(),
             ],
           ),
@@ -117,7 +127,6 @@ class CardWidget extends SearchDelegate {
                 end: FractionalOffset.topCenter,
               )),
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
         ),
       ),
     );
@@ -151,7 +160,7 @@ class CardWidget extends SearchDelegate {
       appBarTheme: AppBarTheme(
         color: color_1,
         elevation: 0,
-        foregroundColor: color_2,
+        foregroundColor: iconcolor,
         shape: null,
       ),
     );
@@ -163,15 +172,24 @@ class CardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 5 , bottom: 5),
       width: MediaQuery.of(context).size.width*0.96,
       height: MediaQuery.of(context).size.height*0.15,
       decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40)),color: Colors.white,boxShadow: [BoxShadow(color: Colors.grey[850]!.withOpacity(0.30),blurRadius: 10, blurStyle: BlurStyle.outer),]),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+        padding: EdgeInsets.fromLTRB(25, 5, 5, 5),
         child: Column(
         children: [
           Row(
-            children: [Text('hello',textAlign: TextAlign.center,)],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text('Pedrito Perez',textAlign: TextAlign.center, style:GoogleFonts.courgette(color: color_3,fontSize:  25, )),
+        Row(
+          children:[
+        IconButton(padding: EdgeInsets.all(0),onPressed: ()=>'', icon:Icon(Icons.edit_outlined, color: iconcolor,size: 20,)),
+        IconButton(padding: EdgeInsets.all(0), onPressed: ()=>'', icon: SvgPicture.asset('assets/trash-1-svgrepo-com.svg', color:iconcolor,width: 20,height: 20,)),
+        ])
+        ],
           ),
         ],
         ),
