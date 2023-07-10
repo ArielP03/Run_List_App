@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Screens/screens.dart';
+import 'src/Screens/Setting_Page.dart';
+import 'src/Screens/screens.dart';
 
 void main() => runApp(AppState());
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home': (_) => HomeScreen(),
+        'setting':(_)=>SettingPage(),
       }
     );
   }
