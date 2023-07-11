@@ -14,6 +14,7 @@ class _ContainerScrollResultState extends State<ContainerScrollResult> {
       child: Container(
         color: color_1,
         child: Container(
+           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
               SizedBox(
@@ -28,14 +29,6 @@ class _ContainerScrollResultState extends State<ContainerScrollResult> {
                     ),
                     alignment: Alignment.center,
                   )),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
             ],
           ),
           decoration: BoxDecoration(
@@ -69,7 +62,9 @@ class _ContainerScrollSuggestionsState
       child: Container(
         color: color_1,
         child: Container(
+          height: MediaQuery.of(context).size.height,
           child: Column(
+
             children: [
               SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -83,14 +78,6 @@ class _ContainerScrollSuggestionsState
                     ),
                     alignment: Alignment.center,
                   )),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
-              CardView(),
             ],
           ),
           decoration: BoxDecoration(

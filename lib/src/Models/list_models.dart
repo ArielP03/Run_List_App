@@ -1,8 +1,4 @@
 class ListModel {
-  
- // final fecha = DateTime.tryParse('$date');
-
-
   int id;
   String name;
   String date;
@@ -18,14 +14,14 @@ class ListModel {
   factory ListModel.fromJson(Map<String, dynamic> json) => ListModel(
         id: json["id"],
         name: json["name"],
-        date: json["date"],
         tarea: json["tarea"],
+        date: json["date"]
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "date": date,
-        "tarea": tarea,
+  Map<String, dynamic> toMap(Map map) => {
+        'id':id,
+        'name':name,
+        'tarea':tarea,
+        'date':date
       };
 }

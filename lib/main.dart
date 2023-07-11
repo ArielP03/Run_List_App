@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'src/Screens/Setting_Page.dart';
 import 'src/Screens/screens.dart';
 
 void main() => runApp(AppState());
