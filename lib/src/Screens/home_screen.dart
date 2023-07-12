@@ -1,7 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:async';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app_list/Widgets/Widgets.dart';
+import 'package:intl/intl.dart';
 import '../Providers/DBProvider.dart';
 
 final Color color_1 = Color.fromARGB(255, 43, 120, 164);
@@ -16,6 +19,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  //DateTime _currentSelectDate = DateTime.now();
+  // void callDatePicker() async {
+  //   DateTime? a = await getDataPickerWidgets();
+  //   setState(() {
+  //     _currentSelectDate = a;
+  //   });
+  // }
+
+  // Future<DateTime?> getDataPickerWidgets() {
+  //   return showDatePicker(
+  //     context: context,
+  //     initialDate: DateTime.now(),
+  //     firstDate: DateTime(2020),
+  //     lastDate: DateTime(2100),
+  //   );
+  // }
+
   final a = null;
   final controller = 0;
   int _selectedIndex = 0;
@@ -138,7 +158,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             return Dismissible(
                               onDismissed: (direction) {
                                 DBProvider.db.deleteTask(list[i]!.id);
-                                print(list[i]!.id);
                               },
                               background: Container(
                                 decoration: BoxDecoration(
@@ -169,6 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               key: UniqueKey(),
                               child: CardView(
+                                id : list[i]!.id,
                                 name: list[i]!.name,
                                 date: list[i]!.date,
                                 tarea: list[i]!.tarea,
@@ -222,90 +242,135 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget cardDialog(BuildContext context) {
-    final name = TextEditingController();
-    final date = TextEditingController();
-    final tarea = TextEditingController();
+  Widget cardDialog(
+    BuildContext context,
+  ) {
+    // DateTime fecha = DateTime.now();
+    TextEditingController name = TextEditingController();
+    TextEditingController date1 = TextEditingController();
+    TextEditingController tarea = TextEditingController();
     var _id = 0;
     String _name = '';
     String _date = '';
     String _tarea = '';
 
-    return Dialog(
-      backgroundColor: Colors.transparent,
-      shadowColor: Colors.transparent,
-      child: Container(
-          padding: EdgeInsets.only(left: 15, right: 5),
-          width: 450,
-          height: 200,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(40))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return StatefulBuilder(builder: (BuildContext context, setState) {
+      return Dialog(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          child: Container(
+              padding: EdgeInsets.only(left: 15, right: 5),
+              width: 550,
+              height: 250,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    width: 200,
-                    height: 30,
-                    child: TextField(
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(), labelText: 'Name'),
-                      controller: name,
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 250,
+                        height: 40,
+                        child: TextField(
+                          textAlign: TextAlign.justify,
+                          autofocus: true,
+                          autocorrect: true,
+                          textCapitalization: TextCapitalization.words,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.only(left: 15, right: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            labelText: 'Name',
+                          ),
+                          controller: name,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 200,
-                    height: 30,
-                    child: TextField(
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(), labelText: 'Fecha'),
-                      controller: date,
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 250,
+                        height: 40,
+                        child: TextField(
+                          textAlign: TextAlign.justify,
+                          autofocus: true,
+                          autocorrect: true,
+                          textCapitalization: TextCapitalization.words,
+                          decoration: InputDecoration(
+                            icon: Icon(Icons.calendar_month_outlined),
+                            contentPadding:
+                                EdgeInsets.only(left: 15, right: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            labelText: 'Select date',
+                          ),
+                          controller: date1,
+                          onTap: () async {
+                            DateTime? aF = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2020),
+                                lastDate: DateTime(2100));
+                            if (aF != null) {
+                              setState(
+                                () {
+                                  date1.text = DateFormat.yMd().format(aF);
+                                },
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 200,
-                    height: 30,
-                    child: TextField(
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(), labelText: 'Tarea'),
-                      controller: tarea,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () async {
-                      _name = name.text;
-                      _date = date.text;
-                      _tarea = tarea.text;
-                      _id = await DBProvider.db.a_1();
-                      print(_id);
-                      Navigator.pop(context); 
-                      final list = ListModel(
-                          id: _id, name: _name, date: _date, tarea: _tarea);
-                     return DBProvider.db.addNewTask(list);
-
-                      
-                    },
-                    icon: SvgPicture.asset(
-                        'assets/392530_add_create_cross_new_plus_icon.svg'),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 250,
+                        height: 70,
+                        child: TextField(
+                          maxLines: 4,
+                          textAlign: TextAlign.justify,
+                          textCapitalization: TextCapitalization.sentences,
+                          autocorrect: true,
+                          decoration: InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.only(top: 10, left: 15, right: 15),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              labelText: 'Tasks'),
+                          controller: tarea,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          _name = name.text;
+                          _date = date1.text;
+                          _tarea = tarea.text;
+                          _id = await DBProvider.db.a_1();
+                          print(_id);
+                          Navigator.pop(context);
+                          final list = ListModel(
+                              id: _id, name: _name, date: _date, tarea: _tarea);
+                          return DBProvider.db.addNewTask(list);
+                        },
+                        icon: SvgPicture.asset(
+                            'assets/392530_add_create_cross_new_plus_icon.svg'),
+                      )
+                    ],
                   )
                 ],
-              )
-            ],
-          )),
-    );
+              )));
+    });
   }
 }
