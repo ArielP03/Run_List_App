@@ -1,7 +1,4 @@
 // ignore_for_file: deprecated_member_use
-
-import 'dart:async';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app_list/Widgets/Widgets.dart';
 import 'package:intl/intl.dart';
