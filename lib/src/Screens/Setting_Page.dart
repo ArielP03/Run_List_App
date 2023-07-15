@@ -44,15 +44,14 @@ class _SettingPageState extends State<SettingPage> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: color_1,
         shadowColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         foregroundColor: Colors.transparent,
         shape: null,
         elevation: 0,
-        title: Transform(
-          transform:  Matrix4.translationValues(-40.0, 0.0, 0.0),
-          child: Text('Setting',style: GoogleFonts.courgette(color: iconcolor,fontSize: 40),)),),
+        title: Text('Setting',style: GoogleFonts.courgette(color: iconcolor,fontSize: 40),)),
       body: Container(
         color: color_1,
         child: Container(

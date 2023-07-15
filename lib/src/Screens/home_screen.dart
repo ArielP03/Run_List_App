@@ -66,16 +66,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
+        automaticallyImplyLeading: false,
         backgroundColor: color_1,
         shadowColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         foregroundColor: Colors.transparent,
         shape: null,
         elevation: 0,
-        title: Transform(
-          transform:  Matrix4.translationValues(-40.0, 0.0, 0.0),
-          child: Text('Home',style: GoogleFonts.courgette(color: iconcolor,fontSize: 40),)),
+        title:  Text('Home',style: GoogleFonts.courgette(color: iconcolor,fontSize: 40),),
         actions: [
           IconButton(
             splashColor: Colors.transparent,
