@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:math';
-
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -42,10 +40,13 @@ class DBProvider {
     return res;
   }
 
-  Future<ListModel?> getTaskId(id) async {
+  Future<List<ListModel>> getTaskId(query) async {
     final db = await database;
-    final res = await db!.query('Lists', where: 'id = ?', whereArgs: [id]);
-    return res.isNotEmpty ? ListModel.fromJson(res.first) : null;
+    final res =
+        await db!.rawQuery('SELECT * FROM Lists WHERE name LIKE \'%'+query+'%\'');
+    List<ListModel> list =
+        res.isNotEmpty ? res.map((c) => ListModel.fromJson(c)).toList() : [];
+    return list;
   }
 
   Future<List<ListModel?>> getAllTask() async {
@@ -77,12 +78,24 @@ class DBProvider {
   }
 
   a_1() async {
-    int randow = 0;
+    // int randow = 0;
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db!.query('Lists');
-    final _numberRandow = Random().nextInt(1000000);
-    randow = _numberRandow;
-    final a = maps.length + randow;
-    return a;
+    try {
+      final b =
+          await db?.rawQuery('SELECT id FROM Lists ORDER BY id DESC LIMIT 1');
+
+      // final List<Map<String, dynamic>> maps = await db!.query('Lists');
+      // final _numberRandow = Random().nextInt(1000000);
+      // randow = _numberRandow;
+      final q = b?.asMap();
+      final a = q!.values.first;
+      final e = a.values.first;
+      final r = e.toString();
+      final t = int.tryParse(r);
+      final f = t! + 1;
+      return f;
+    } catch (error) {
+      return 1;
+    }
   }
 }

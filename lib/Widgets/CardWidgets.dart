@@ -47,6 +47,7 @@ class CardView extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.fromLTRB(25, 5, 5, 5),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,11 +58,10 @@ class CardView extends StatelessWidget {
                         color: color_3,
                         fontSize: 25,
                       )),
-                  Row(children: [
                     IconButton(
                         padding: EdgeInsets.all(0),
                         onPressed: () {
-                          showDialog(context: context, builder: cardDialog);
+                          showDialog(context: context, builder: cardDialogEdit);
                          
                         },
                         icon: Icon(
@@ -69,9 +69,14 @@ class CardView extends StatelessWidget {
                           color: iconcolor,
                           size: 20,
                         )),
-                  ])
                 ],
               ),
+              Row(children: [Container(height:30,width: 340,child: Text(tarea,overflow: TextOverflow.ellipsis,style: GoogleFonts.courgette(color: color_3, fontSize: 15),))],),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Text(date,style: GoogleFonts.courgette(color: color_3, fontSize: 20)),
+              ],)
             ],
           ),
         ),
@@ -130,7 +135,7 @@ class CardView extends StatelessWidget {
     );
   }
 
-  Widget cardDialog(
+  Widget cardDialogEdit(
     BuildContext context,
   ) {
     // DateTime fecha = DateTime.now();

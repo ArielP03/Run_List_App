@@ -21,7 +21,7 @@ class SearchWidget extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return ContainerScrollResult();
+    return ContainerScrollResult(query:this.query,);
   }
 
   @override

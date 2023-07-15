@@ -69,12 +69,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         backgroundColor: color_1,
         shadowColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         foregroundColor: Colors.transparent,
         shape: null,
         elevation: 0,
+        title: Transform(
+          transform:  Matrix4.translationValues(-40.0, 0.0, 0.0),
+          child: Text('Home',style: GoogleFonts.courgette(color: iconcolor,fontSize: 40),)),
         actions: [
           IconButton(
             splashColor: Colors.transparent,
@@ -112,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final list = snapshot.data;
               if (list!.length == 0) {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: noData(),
                 );
               }
               return Container(
@@ -372,5 +376,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               )));
     });
+  }
+  
+  Widget noData() {
+    return Center(child: Text('have no data',style: GoogleFonts.courgette(color:color_3,fontSize: 30),),);
   }
 }

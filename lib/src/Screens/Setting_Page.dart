@@ -3,6 +3,7 @@
 import 'package:app_list/src/Screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -12,8 +13,6 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  
-
   @override
   Widget build(BuildContext context) {
     final controller = 1;
@@ -29,22 +28,116 @@ class _SettingPageState extends State<SettingPage> {
           page = SettingPage();
         }
         if (_selectedIndex != controller) {
-         // Navigator.pushNamed(context, '$page');
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (_, __, ___) => page,
-            transitionDuration: Duration(milliseconds: 50),
-            transitionsBuilder: (_, a, __, c) =>
-                FadeTransition(opacity: a, child: c),
-          ),
-        );
+          // Navigator.pushNamed(context, '$page');
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => page,
+              transitionDuration: Duration(milliseconds: 50),
+              transitionsBuilder: (_, a, __, c) =>
+                  FadeTransition(opacity: a, child: c),
+            ),
+          );
         }
       });
     }
 
     return Scaffold(
-      body: Center(child: Text('Setting')),
+      appBar: AppBar(
+        backgroundColor: color_1,
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: Colors.transparent,
+        shape: null,
+        elevation: 0,
+        title: Transform(
+          transform:  Matrix4.translationValues(-40.0, 0.0, 0.0),
+          child: Text('Setting',style: GoogleFonts.courgette(color: iconcolor,fontSize: 40),)),),
+      body: Container(
+        color: color_1,
+        child: Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(50),topRight: Radius.circular(50)),gradient: LinearGradient(
+                      colors: [color_1, Colors.white],
+                      begin: FractionalOffset.bottomCenter,
+                      end: FractionalOffset.topCenter,
+                    )),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color:color_3,
+                        borderRadius: BorderRadius.circular(30),),
+                        //boxShadow: [BoxShadow(blurRadius: 20,spreadRadius:10,color: Colors.grey.shade300)]
+                        child: Icon(Icons.report),
+                  ),
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color:color_3,
+                        borderRadius: BorderRadius.circular(30),),
+                        //boxShadow: [BoxShadow(blurRadius: 20,spreadRadius:10,color: Colors.grey.shade300)]
+                        child: Icon(Icons.report),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color:color_3,
+                        borderRadius: BorderRadius.circular(30),),
+                       // boxShadow: [BoxShadow(blurRadius: 20,spreadRadius:10,color: Colors.grey.shade300)]
+                        child: Icon(Icons.report),
+                  ),
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color:color_3,
+                        borderRadius: BorderRadius.circular(30),),
+                       // boxShadow: [BoxShadow(blurRadius: 20,spreadRadius:10,color: Colors.grey.shade300)]
+                        child: Icon(Icons.report),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color:color_3,
+                        borderRadius: BorderRadius.circular(30),),
+                       // boxShadow: [BoxShadow(blurRadius: 20,spreadRadius:10,color: Colors.grey.shade300)]
+                        child: Icon(Icons.report),
+                  ),
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      
+                      color:color_3,
+                        borderRadius: BorderRadius.circular(30),),
+                        // boxShadow: [BoxShadow(blurRadius: 15,spreadRadius:0,color: Colors.grey.shade300)]
+                        child: Icon(Icons.report),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         child: Row(
